@@ -1,0 +1,15 @@
+.back{
+  background-color: #E6ECF0;
+}
+
+
+.uniform-size {
+  width: 30px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+}
