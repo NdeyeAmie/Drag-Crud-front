@@ -164,15 +164,26 @@ function Card() {
   }, []);
 
 
-  const onDragEnd = (result) => {
+  const onDragEnd = async (result) => {
     const { source, destination } = result;
     if (!destination) return;
   
     const updated = [...columns];
     const [movedItem] = updated[source.droppableId].items.splice(source.index, 1);
     updated[destination.droppableId].items.splice(destination.index, 0, movedItem);
+  
     setColumns(updated);
+  
+    try {
+      await axios.put(`https://drag-crud-backend.onrender.com/cards/${movedItem._id}`, {
+        ...movedItem,
+        column: columns[destination.droppableId].title, 
+      });
+    } catch (error) {
+      console.error("Erreur lors du déplacement :", error);
+    }
   };
+  
   
 
   return (
