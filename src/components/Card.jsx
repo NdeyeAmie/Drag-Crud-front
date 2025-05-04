@@ -27,7 +27,7 @@ function Card() {
   useEffect(() => {
     const fetchCards = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/cards");
+        const res = await axios.get("https://drag-crud-backend.onrender.com/cards");
         const loadedColumns = [
           { title: "To do", items: [] },
           { title: "In Progress", items: [] },
@@ -57,7 +57,7 @@ function Card() {
       return alert("Tous les champs sont requis !");
 
     try {
-      const response = await axios.post("http://localhost:5000/cards", {
+      const response = await axios.post("https://drag-crud-backend.onrender.com/cards", {
         ...newItem,
         column: columns[columnIndex].title,
         users: [Math.floor(Math.random() * 10) + 1],
@@ -77,7 +77,7 @@ function Card() {
   const handleDelete = async (item) => {
     if (window.confirm("Supprimer cette carte ?")) {
       try {
-        await axios.delete(`http://localhost:5000/cards/${item._id}`);
+        await axios.delete(`https://drag-crud-backend.onrender.com/cards/${item._id}`);
         const updatedColumns = columns.map((col) => ({
           ...col,
           items: col.items.filter((i) => i._id !== item._id),
@@ -100,7 +100,7 @@ function Card() {
         column: columns[columnIndex].title,
       };
   
-      const res = await axios.put(`http://localhost:5000/cards/${editItem._id}`, updated);
+      const res = await axios.put(`https://drag-crud-backend.onrender.com/cards/${editItem._id}`, updated);
   
       const updatedColumns = [...columns].map((col, i) => {
         if (i === columnIndex) {
@@ -139,7 +139,7 @@ function Card() {
     useEffect(() => {
     const fetchCards = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/cards");
+        const res = await axios.get("https://drag-crud-backend.onrender.com/cards");
         const loadedColumns = [
           { title: "To do", items: [] },
           { title: "In Progress", items: [] },
